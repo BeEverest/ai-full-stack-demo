@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+
+  body {
+    @apply bg-canvas text-ink-primary font-sans antialiased;
+    font-feature-settings: "kern", "liga", "calt";
+  }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { @apply bg-canvas; }
+  ::-webkit-scrollbar-thumb { @apply bg-line-bright rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-blue-muted; }
+
+  ::selection { background: rgba(45,143,232,0.25); }
+}
+
+@layer components {
+  /* ── 滚动入场动效 ─────────────────────────────── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  /* stagger variants */
+  .reveal-delay-1 { transition-delay: 80ms; }
+  .reveal-delay-2 { transition-delay: 160ms; }
+  .reveal-delay-3 { transition-delay: 240ms; }
+  .reveal-delay-4 { transition-delay: 320ms; }
+
+  /* ── 主按钮 ──────────────────────────────────── */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2
+           px-6 py-3 rounded text-sm font-medium
+           bg-blue-base text-white
+           transition-all duration-200
+           hover:bg-blue-bright hover:shadow-glow-md
+           focus:outline-none focus:ring-2 focus:ring-blue-base/40;
+  }
+  .btn-primary.lg { @apply px-8 py-3.5 text-base; }
+
+  /* ── 描边按钮 ─────────────────────────────────── */
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2
+           px-6 py-3 rounded text-sm font-medium
+           border border-line-bright text-ink-primary
+           transition-all duration-200
+           hover:border-blue-base hover:text-blue-bright hover:shadow-glow-sm
+           focus:outline-none focus:ring-2 focus:ring-blue-base/30;
+  }
+  .btn-outline.lg { @apply px-8 py-3.5 text-base; }
+
+  /* ── 卡片 ─────────────────────────────────────── */
+  .card {
+    @apply bg-surface border border-line-base rounded-lg
+           shadow-inset-line
+           transition-all duration-200;
+  }
+  .card:hover {
+    @apply border-line-bright shadow-glow-sm;
+  }
+
+  /* ── 渐变文字 ─────────────────────────────────── */
+  .text-blue-gradient {
+    @apply bg-gradient-blue bg-clip-text text-transparent;
+  }
+
+  /* ── 小标签 ──────────────────────────────────── */
+  .label-tag {
+    @apply inline-flex items-center gap-1.5
+           border border-blue-dim text-blue-bright
+           text-2xs font-medium tracking-widest uppercase
+           px-3 py-1 rounded-full;
+  }
+
+  /* ── section 间距 ───────────────────────────── */
+  .section {
+    @apply py-24 px-4 sm:px-8 lg:px-16 xl:px-24;
+  }
+
+  /* ── 细分割线 ────────────────────────────────── */
+  .divider { @apply border-t border-line-faint; }
+
+  /* ── 数据列高亮 ─────────────────────────────── */
+  .spec-row {
+    @apply flex items-start py-3.5 border-b border-line-faint last:border-0;
+  }
+}
