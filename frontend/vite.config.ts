@@ -15,5 +15,10 @@ export default defineConfig({
         changeOrigin: true,
       },
     },
+    allowedHosts: [
+      'localhost',
+      '127.0.0.1',
+      'unplagiarized-emmie-coroplastic.ngrok-free.dev', // 你的 ngrok 域名
+    ]    
   },
 })
